@@ -80,6 +80,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/user/upload-image', 'Rest\UserProfileController@uploadImage');
     Route::get('/verify', 'Rest\UserProfileController@verify');
     Route::get('/verify-code/{type}', 'Rest\UserProfileController@verifyCode');
+    Route::post('/verify-code-otp', 'Rest\UserProfileController@verifyCodeOTP');
     Route::put('/update-password', 'Rest\UserProfileController@updatePassword');
 
     //Dua Routes

@@ -191,6 +191,30 @@ class UserProfileController extends Controller
         }
 
     }
+    // this function mehtod is post for varify contact OTP
+    
+    public function verifyCodeOTP(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'contact'     =>  'required',
+            'status'     =>  'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->first()], 401);
+        }else{
+            $userProfile = UserProfile::where(['user_id'=> Auth::id(), 'contact' => $request->contact])->first();
+            if ($userProfile ==  null){
+                return response()->json(['error' => 'User Verification Contact number not recognised'], 403);
+            }
+            $userProfile->contact_verification_status = ($userProfile->contact_verification_status === true) ? true: $request->status;
+            $userProfile->contact_verification = null;
+            $userProfile->update();
+
+            return response()->json(['message'=> 'Contact verify successfully'], 200);
+        }
+
+    }
+    // this function mehtod is post for varify contact OTP
 
     //update password
     public function updatePassword(Request $request)

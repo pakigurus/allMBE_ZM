@@ -19,7 +19,7 @@ class GoogleApi
             'timeout' => 50,
         ]);
 
-        $this->apiKey = env('GOOGLE_API_KEY');
+//         $this->apiKey = env('GOOGLE_API_KEY');
     }
 
     public function masajidSearch($data)
